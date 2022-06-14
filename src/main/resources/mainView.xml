@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mainView>
+    <file>File</file>
+    <firstName>setFirstName</firstName>
+    <lastName>setLastName</lastName>
+    <styles>
+        <name>name1</name>
+        <value>value1</value>
+    </styles>
+    <styles>
+        <name>name1</name>
+        <value>value1</value>
+    </styles>
+    <styles>
+        <name>name1</name>
+        <value>value1</value>
+    </styles>
+</mainView>

@@ -1,10 +1,13 @@
 package com.ntu.mineev.transformer.controllers;
 
+import com.ntu.mineev.transformer.DTO.InputData;
 import com.ntu.mineev.transformer.model.htmlview.Dictionary;
 import com.ntu.mineev.transformer.model.Element;
 import com.ntu.mineev.transformer.services.FileManagerService;
+import com.ntu.mineev.transformer.services.FirstPagePreparer;
 import com.ntu.mineev.transformer.services.UtilityService;
 import com.ntu.mineev.transformer.services.transformation.TransformationService;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,30 +28,53 @@ public class InjectController {
     @Autowired
     FileManagerService fileManagerService;
     @Autowired
+    FirstPagePreparer firstPagePreparer;
+    @Autowired
     TransformationService transformationService;
     @Autowired
     UtilityService utilityService;
 
     @Autowired
     Dictionary dictionary;
+    String firstName;
+    String lastName;
+    String facultyName;
+    String departmentName;
+    String contractFrom;
+    String contractTo;
+    String workingPart;
+    String rank;//Вчене звання
+    String scientificLevel;//Науковий ступінь
+    String jobTitle;
 
     @PostMapping("/inject")
-    ResponseEntity<ByteArrayResource> postInject(@RequestParam String fname,
-                                                 @RequestParam String lname,
-                                                 @RequestParam String email,
-                                                 @RequestParam String department,
-                                                 @RequestParam String style,
-                                                 @RequestParam String element,
+    ResponseEntity<ByteArrayResource> postInject(@RequestParam String firstName,
+                                                 @RequestParam String lastName,
+                                                 @RequestParam String facultyName,
+                                                 @RequestParam String departmentName,
+                                                 @RequestParam String contractFrom,
+                                                 @RequestParam String contractTo,
+                                                 @RequestParam String workingPart,
+                                                 @RequestParam String rank,
+                                                 @RequestParam String scientificLevel,
+                                                 @RequestParam String jobTitle,
                                                  @RequestParam("file") MultipartFile[] files) throws IOException {
+        InputData inputData = new InputData(firstName,
+                lastName,
+                facultyName,
+                departmentName,
+                contractFrom,
+                contractTo,
+                workingPart,
+                rank,
+                scientificLevel,
+                jobTitle);
 
-
-
-
-        Path uploadedPath = fileManagerService.saveFile(email, department, files);
-        Path transformedPath = transformationService.transform(uploadedPath);
+        Path savedFile = fileManagerService.saveFile(lastName + "@", departmentName, files);
+        Path transformedFile = transformationService.transform(savedFile,inputData);
         // fileManagerService.deleteUploadedFile(uploadedPath);
 
-        return utilityService.prepareResultFileResponse(transformedPath);
+        return utilityService.prepareResultFileResponse(transformedFile);
     }
 
     @GetMapping("/inject")
@@ -56,15 +83,25 @@ public class InjectController {
         return "hello";
     }
 
+    @GetMapping("/testing")
+    ResponseEntity<ByteArrayResource> getIn() throws IOException {
+        XSSFWorkbook firstPageWb = firstPagePreparer.prepareFirstPage(fileManagerService.getStubExcel(), null);
+        Path transformedPath = Paths.get(FileManagerService.TRANSFORMED_FOLDER + "/1.xlsx");
+        fileManagerService.saveExcelFile(firstPageWb, transformedPath.toString());
+        return utilityService.prepareResultFileResponse(transformedPath);
+    }
+
     @GetMapping("/")
     String welcome(Model model) throws IOException {
         utilityService.getDictionary();
-        List<Element> elementList = new ArrayList<>();
-        elementList.add(new Element("1", "100"));
-        elementList.add(new Element("2", "200"));
-        elementList.add(new Element("3", "300"));
-        elementList.add(new Element("4", "400"));
-        model.addAttribute("elements", elementList);
+        List<Element> faculties = new ArrayList<>();
+        faculties.add(new Element("ФІТ", "ФІТ"));
+        faculties.add(new Element("ЕТФ", "ЕТФ"));
+        faculties.add(new Element("ГРФ", "ГРФ"));
+        faculties.add(new Element("ММФ", "ММФ"));
+        model.addAttribute("faculties", faculties);
+
+
         return "index";
     }
 }

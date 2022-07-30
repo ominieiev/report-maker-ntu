@@ -1,8 +1,5 @@
 package com.ntu.mineev.transformer.model;
 
-
-
-
 public class Element {
     String name;
     String value;

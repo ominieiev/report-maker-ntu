@@ -23,13 +23,13 @@ public class UtilityService {
     private static final int MAX_DEPARTMENT_LENGTH = 5;
 
     public String prepareFileNameForUpload(String email, String department) {
-       String name = email.split("@")[0];
-       if (name.length()>MAX_NAME_LENGTH) {
-           name=name.substring(0,MAX_NAME_LENGTH);
+        String name = email.split("@")[0];
+        if (name.length() > MAX_NAME_LENGTH) {
+            name = name.substring(0, MAX_NAME_LENGTH);
         }
-        String departmentName=department;
-        if (departmentName.length()>MAX_DEPARTMENT_LENGTH) {
-            departmentName=departmentName.substring(0,MAX_DEPARTMENT_LENGTH);
+        String departmentName = department;
+        if (departmentName.length() > MAX_DEPARTMENT_LENGTH) {
+            departmentName = departmentName.substring(0, MAX_DEPARTMENT_LENGTH);
         }
 
         String validTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss"));
@@ -57,6 +57,14 @@ public class UtilityService {
     public Dictionary getDictionary() {
         ApplicationContext context = new AnnotationConfigApplicationContext(DictionaryConfig.class);
         return context.getBean(Dictionary.class);
+
+    }
+
+   static public int findFirstOrSecondSemester(float semester) {
+        if (Math.round(semester) % 2 == 0) {
+            return 2;
+        } else return 1;
+
 
     }
 

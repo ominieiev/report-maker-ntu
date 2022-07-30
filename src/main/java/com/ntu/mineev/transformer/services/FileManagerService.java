@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 @Service
 public class FileManagerService {
     public static final String UPLOADED_FOLDER = "src/main/resources/uploadedFiles/";
+    public static final String EXCEL_STUB_PATH = "src/main/resources/excel_stubs/stub.xlsx";
     public static final String TRANSFORMED_FOLDER = "src/main/resources/transformedFiles/";
     public static final String RESOURSE_MAIN_VIEW = "src/main/resources/mainView.xml";
     @Autowired
@@ -48,6 +49,10 @@ public class FileManagerService {
         FileOutputStream outputStream = new FileOutputStream(path);
         workbook.write(outputStream);
         workbook.close();
+
+    }
+    public XSSFWorkbook getStubExcel() throws IOException {
+        return  openExcelFile(String.valueOf(Paths.get(EXCEL_STUB_PATH )));
 
     }
 }

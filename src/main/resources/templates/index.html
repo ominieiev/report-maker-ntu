@@ -3,33 +3,51 @@
 
 <body>
 
-<h2>creator</h2>
+<h2>Reporting Creator NMU SAU Minieiev Alexx</h2>
 
 <form action="/inject" method="post" enctype="multipart/form-data">
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname" value="John"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname" value="Doe"><br><br>
-    <label for="email">email:</label><br>
-    <input type="text" id="email" name="email" value="John@nmu.one"><br>
-    <label for="department">department name:</label><br>
-    <input type="text" id="department" name="department" value="SAU"><br><br>
-    <label for="style">type:</label><br>
-    <select id="style" name="style">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="fiat">Fiat</option>
-        <option value="audi">Audi</option>
+    <label for="firstName">Ім.я Побатькові:</label><br>
+    <input type="text" id="firstName" name="firstName" value="John Smith"><br>
+
+    <label for="lastName">Прізвище:</label><br>
+    <input type="text" id="lastName" name="lastName" value="Mcdonald"><br><br>
+
+
+    <label for="departmentName">department name:</label><br>
+    <select id="departmentName" name="departmentName">
+        <option value="САіУ">САіУ</option>
+        <option value="ПЗКС">ПЗКС</option>
+        <option value="БІТ">БІТ</option>
     </select>
     <br><br>
-    <label for="element">elements:</label><br>
-    <select id="element" name="element">
+    <label for="facultyName">faculty:</label><br>
+    <select id="facultyName" name="facultyName">
 
-
-            <option th:each="element : ${elements}" th:value="${element.name}" th:text="${element.value}"></option>
+            <option th:each="element : ${faculties}" th:value="${element.name}" th:text="${element.value}"></option>
 
     </select>
     <br><br>
+
+
+    <label for="contractFrom">контракт з:</label><br>
+    <input type="text" id="contractFrom" name="contractFrom" value="1.01.2021"><br>
+
+    <label for="contractTo">контракт до:</label><br>
+    <input type="text" id="contractTo" name="contractTo" value="1.01.2034"><br><br>
+
+    <label for="workingPart">ставка розмір:</label><br>
+    <input type="text" id="workingPart" name="workingPart" value="1.1"><br>
+
+    <label for="rank">Вчене звання:</label><br>
+    <input type="text" id="rank" name="rank" value="професор"><br>
+
+    <label for="scientificLevel">Науковий ступінь:</label><br>
+    <input type="text" id="scientificLevel" name="scientificLevel" value="д.т.н"><br><br>
+
+    <label for="jobTitle">посада:</label><br>
+    <input type="text" id="jobTitle" name="jobTitle" value="професор"><br>
+
+
     <label for="file">FILE:</label><br>
     <input type="file" id="file" name="file"><br><br>
     <input type="submit" value="Submit">

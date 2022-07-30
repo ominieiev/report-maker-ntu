@@ -39,7 +39,7 @@ public class TransformationService {
         XSSFWorkbook report_wb=fileManagerService.getStubExcel();
 
         report_wb = firstPagePreparer.prepareFirstPage(report_wb, inputData);
-        semesterPagesPreparer.prepareSemesters(report_wb, disciplineList);
+       // semesterPagesPreparer.prepareSemesters(report_wb, disciplineList);
 
         Path transformedPath = Paths.get(FileManagerService.TRANSFORMED_FOLDER + utilityService.getFileNameFromPath(path));
         fileManagerService.saveExcelFile(report_wb, transformedPath.toString());

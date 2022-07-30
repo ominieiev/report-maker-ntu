@@ -1,7 +1,6 @@
 package com.ntu.mineev.transformer.services.parcers;
 
 import com.ntu.mineev.transformer.model.report.Discipline;
-import  org.apache.commons.lang.math.NumberUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -53,7 +52,7 @@ public class ExcelParser {
                 }
             }
 
-            if (NumberUtils.isNumber(row.getCell(0).toString())) {
+            if (isNumeric(row.getCell(0).toString())) {
                 result.add(parceExcelDiscipline(sheet.getRow(i), educationType));
             }
         }
@@ -103,5 +102,14 @@ public class ExcelParser {
             return cell.getCTCell().getV();
         }
         return cell.toString();
+    }
+
+    private static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
     }
 }

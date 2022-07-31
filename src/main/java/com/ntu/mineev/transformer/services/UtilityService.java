@@ -11,10 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Service
 public class UtilityService {
@@ -33,7 +35,7 @@ public class UtilityService {
         }
 
         String validTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss"));
-        return departmentName + "_" + name + "_" + validTime + FILE_EXTENSION;
+        return convertToEnglish(departmentName + "_" + name) + "_" + validTime + FILE_EXTENSION;
     }
 
     public ResponseEntity<ByteArrayResource> prepareResultFileResponse(Path path) throws IOException {
@@ -64,8 +66,73 @@ public class UtilityService {
         if (Math.round(semester) % 2 == 0) {
             return 2;
         } else return 1;
-
-
     }
+
+    static public String convertToEnglish(String str){
+
+       return str.toLowerCase(Locale.ROOT)
+               .replace("а","a")
+                .replace("б","b")
+                .replace("в","v")
+                .replace("г","g")
+                .replace("д","d")
+                .replace("е","e")
+                .replace("й","y")
+                .replace("ж","zh")
+                .replace("з","z")
+                .replace("і","i")
+                .replace("ї","yi")
+                .replace("к","k")
+                .replace("л","l")
+                .replace("м","m")
+                .replace("н","n")
+                .replace("о","o")
+                .replace("п","p")
+                .replace("р","r")
+                .replace("с","s")
+                .replace("т","t")
+                .replace("у","u")
+                .replace("ф","f")
+                .replace("х","h")
+                .replace("ц","ts")
+                .replace("ч","ch")
+                .replace("ш","sh")
+                .replace("щ","sch")
+                .replace("є","ye")
+                .replace("ю","yu")
+                .replace("я","ya")
+                .replace("а","a")
+                .replace("б","b")
+                .replace("в","v")
+                .replace("г","g")
+                .replace("д","d")
+                .replace("е","e")
+                .replace("й","y")
+                .replace("ж","zh")
+                .replace("з","z")
+                .replace("і","i")
+                .replace("ї","yi")
+                .replace("к","k")
+                .replace("л","l")
+                .replace("м","m")
+                .replace("н","n")
+                .replace("о","o")
+                .replace("п","p")
+                .replace("р","r")
+                .replace("с","s")
+                .replace("т","t")
+                .replace("у","u")
+                .replace("ф","f")
+                .replace("х","h")
+                .replace("ц","ts")
+                .replace("ч","ch")
+                .replace("ш","sh")
+                .replace("щ","sch")
+                .replace("є","ye")
+                .replace("ю","yu")
+                .replace("я","ya");
+
+    };
+
 
 }

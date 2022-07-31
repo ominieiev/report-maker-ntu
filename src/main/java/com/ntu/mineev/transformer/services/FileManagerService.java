@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 public class FileManagerService {
     public static final String UPLOADED_FOLDER = "src/main/resources/uploadedFiles/";
     public static final String EXCEL_STUB_PATH = "src/main/resources/excel_stubs/stub.xlsx";
+    public static final String EXCEL_DEMO_INPUT_FILE = "src/main/resources/excel_stubs/KOZIR 2021-2022.xlsx";
     public static final String TRANSFORMED_FOLDER = "src/main/resources/transformedFiles/";
     public static final String RESOURSE_MAIN_VIEW = "src/main/resources/mainView.xml";
     @Autowired

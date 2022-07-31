@@ -77,10 +77,10 @@ public class InjectController {
         return utilityService.prepareResultFileResponse(transformedFile);
     }
 
-    @GetMapping("/inject")
-    String getInject() {
+    @GetMapping("/getDemoInputFile")
+    ResponseEntity<ByteArrayResource>  getInject() throws IOException {
 
-        return "hello";
+        return utilityService.prepareResultFileResponse(Paths.get(FileManagerService.EXCEL_DEMO_INPUT_FILE ));
     }
 
     @GetMapping("/testing")

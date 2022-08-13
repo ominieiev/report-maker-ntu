@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<a href="/getDemoInputFile">DEMO INPUT FILE</a>
+<h2>Reporting Creator NMU SAU Minieiev Alexx</h2>
+
+<form action="/inject" method="post" enctype="multipart/form-data">
+    <label for="firstName">Ім.я Побатькові:</label><br>
+    <input type="text" id="firstName" name="firstName" value="John Smith"><br>
+
+    <label for="lastName">Прізвище:</label><br>
+    <input type="text" id="lastName" name="lastName" value="Mcdonald"><br><br>
+
+    <label for="departmentName">department name:</label><br>
+    <select id="departmentName" name="departmentName">
+        <option value="САіУ">САіУ</option>
+        <option value="ПЗКС">ПЗКС</option>
+        <option value="БІТ">БІТ</option>
+    </select>
+    <br><br>
+    <label for="facultyName">faculty:</label><br>
+    <select id="facultyName" name="facultyName">
+
+            <option th:each="element : ${faculties}" th:value="${element.name}" th:text="${element.value}"></option>
+
+    </select>
+    <br><br>
+
+
+    <label for="contractFrom">контракт з:</label><br>
+    <input type="text" id="contractFrom" name="contractFrom" value="1.01.2021"><br>
+
+    <label for="contractTo">контракт до:</label><br>
+    <input type="text" id="contractTo" name="contractTo" value="1.01.2034"><br><br>
+
+    <label for="workingPart">ставка розмір:</label><br>
+    <input type="text" id="workingPart" name="workingPart" value="1.1"><br>
+
+    <label for="rank">Вчене звання:</label><br>
+    <input type="text" id="rank" name="rank" value="професор"><br>
+
+    <label for="scientificLevel">Науковий ступінь:</label><br>
+    <input type="text" id="scientificLevel" name="scientificLevel" value="д.т.н"><br><br>
+
+    <label for="jobTitle">посада:</label><br>
+    <input type="text" id="jobTitle" name="jobTitle" value="професор"><br>
+
+
+    <label for="file">FILE:</label><br>
+    <input type="file" id="file" name="file"><br><br>
+    <input type="submit" value="Submit">
+
+
+</form>
+
+<
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+
+</body>
+</html>

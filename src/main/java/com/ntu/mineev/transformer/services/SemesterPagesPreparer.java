@@ -19,13 +19,13 @@ public class SemesterPagesPreparer {
     public static final int FIRST_SEMESTER_ONSHORE_STARTS_FROM = 10;
     public static final int FIRST_SEMESTER_ONSHORE_TOTAL_RESULTS_LINE = 1;
 
-    public static final int FIRST_SEMESTER_OFFSHORE_STARTS_FROM = 81;
+    public static final int FIRST_SEMESTER_OFFSHORE_STARTS_FROM = 117;
     public static final int FIRST_SEMESTER_OFFSHORE_TOTAL_RESULTS_LINE = 1;
 
     public static final int SECOND_SEMESTER_ONSHORE_STARTS_FROM = 1;
-    public static final int SECOND_SEMESTER_ONSHORE_TOTAL_RESULTS_LINE = 12;
+    public static final int SECOND_SEMESTER_ONSHORE_TOTAL_RESULTS_LINE = 10;
 
-    public static final int SECOND_SEMESTER_OFFSHORE_STARTS_FROM = 113;
+    public static final int SECOND_SEMESTER_OFFSHORE_STARTS_FROM = 117;
     public static final int SECOND_SEMESTER_OFFSHORE_TOTAL_RESULTS_LINE = 1;
     @Autowired
     FileManagerService fileManagerService;
@@ -131,8 +131,8 @@ public class SemesterPagesPreparer {
         wsr.getCell(InputCellAddresses.TIME_FOR_PASSING_FINAL_DIPLOMAS.getIndexOfFirstOutputColumn()+1).setCellValue(disc.getTimeForPassingFinalDiplomas());
         wsr.getCell(InputCellAddresses.TIME_FOR_PHD_CONSULT.getIndexOfFirstOutputColumn()).setCellValue(disc.getTimeForPhDConsult());
         wsr.getCell(InputCellAddresses.TIME_FOR_PHD_CONSULT.getIndexOfFirstOutputColumn()+1).setCellValue(disc.getTimeForPhDConsult());
-  //      wsr.getCell(InputCellAddresses.TOTAL_TIME.getIndexOfFirstOutputColumn()).setCellValue(disc.getTotalTime());
-  //      wsr.getCell(InputCellAddresses.TOTAL_TIME.getIndexOfFirstOutputColumn()+1).setCellValue(disc.getTotalTime());
+        wsr.getCell(InputCellAddresses.TOTAL_TIME.getIndexOfFirstOutputColumn()).setCellValue(disc.getTotalTime());
+        wsr.getCell(InputCellAddresses.TOTAL_TIME.getIndexOfFirstOutputColumn()+1).setCellValue(disc.getTotalTime());
         return wsr;
     }
 }

@@ -85,7 +85,7 @@ public class InjectController {
 
     @GetMapping("/testing")
     ResponseEntity<ByteArrayResource> getIn() throws IOException {
-        XSSFWorkbook firstPageWb = firstPagePreparer.prepareFirstPage(fileManagerService.getStubExcel(), null);
+        XSSFWorkbook firstPageWb = firstPagePreparer.prepareFirstPageAndStub(fileManagerService.getStubExcel(), null);
         Path transformedPath = Paths.get(FileManagerService.TRANSFORMED_FOLDER + "/1.xlsx");
         fileManagerService.saveExcelFile(firstPageWb, transformedPath.toString());
         return utilityService.prepareResultFileResponse(transformedPath);

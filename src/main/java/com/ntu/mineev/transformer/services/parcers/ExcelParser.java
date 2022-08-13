@@ -88,7 +88,7 @@ public class ExcelParser {
         discipline.setTimeForFinalExams(Float.parseFloat(getValue(row.getCell(InputCellAddresses.TIME_FOR_FINAL_EXAMS.getIndexOfInputColumn()))));
         discipline.setTimeForPassingFinalDiplomas(Float.parseFloat(getValue(row.getCell(InputCellAddresses.TIME_FOR_PASSING_FINAL_DIPLOMAS.getIndexOfInputColumn()))));
         discipline.setTimeForPhDConsult(Float.parseFloat(getValue(row.getCell(InputCellAddresses.TIME_FOR_PHD_CONSULT.getIndexOfInputColumn()))));
-        discipline.setTotalTime(Float.parseFloat(getValue(row.getCell(InputCellAddresses.TOTAL_TIME.getIndexOfInputColumn()))));
+        discipline.setTotalTime(Float.parseFloat(row.getCell(InputCellAddresses.TOTAL_TIME.getIndexOfInputColumn()).getRawValue()));
 
         discipline.setEducationType(educationType);
         return discipline;
@@ -109,7 +109,12 @@ public class ExcelParser {
             Integer.parseInt(str);
             return true;
         } catch(NumberFormatException e){
-            return false;
+            try {
+                Float.parseFloat(str);
+                return true;
+            } catch(NumberFormatException ee){
+                return false;
+            }
         }
     }
 }

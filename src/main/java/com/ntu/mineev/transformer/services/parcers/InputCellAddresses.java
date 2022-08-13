@@ -32,7 +32,7 @@ public enum InputCellAddresses {
     TIME_FOR_FINAL_EXAMS(51),//ПРОВЕДЕННЯ АТЕСТАЦІЙНИХ ЕКЗАМЕНІВ
     TIME_FOR_PASSING_FINAL_DIPLOMAS(55),//ПРОВЕДЕННЯ ЗАХИСТУ КВАЛІФІКАЦІЙНИХ РОБІТ
     TIME_FOR_PHD_CONSULT(57),//КОНСУЛЬТУВАННЯ ДОКТОРАНТІВ, КЕРІВНИЦТВО ЗДОБУВАЧАМИ ВИЩОЇ ОСВІТИ СТУПЕНЯ ДОКТОРА ФІЛОСОФІЇ
-    TOTAL_TIME(59);//ВСЬОГО НАВЧАЛЬНОГО НАВАНТАЖЕННЯ ЗА СЕМЕСТР
+    TOTAL_TIME(59,57);//ВСЬОГО НАВЧАЛЬНОГО НАВАНТАЖЕННЯ ЗА СЕМЕСТР
     private int indexOfInputColumn;
     private int indexOfFirstOutputColumn;
     InputCellAddresses(int indexOfInputColumn) {

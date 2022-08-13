@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 @Service
 public class FirstPagePreparer {
@@ -19,10 +18,10 @@ public class FirstPagePreparer {
     UniversityInfoService universityInfoService;
 
 
-    public XSSFWorkbook prepareFirstPage(XSSFWorkbook workbook, InputData inputInfo) throws IOException {
-
+    public XSSFWorkbook prepareFirstPageAndStub(XSSFWorkbook workbook, InputData inputInfo) throws IOException {
+        prepareStub(workbook);
         //inputInfo = StringUtility.getRandomInputData();
-        XSSFSheet ws=workbook.getSheetAt(0);
+        XSSFSheet ws = workbook.getSheetAt(0);
         ws.getRow(24).getCell(1).
                 setCellValue(inputInfo.getFirstName() + " " + inputInfo.getLastName()); //B25
 
@@ -37,9 +36,9 @@ public class FirstPagePreparer {
                 setCellValue(universityInfoService.getDepartmentBoss(inputInfo.getDepartmentName()));//D46
 
         ws.getRow(10).getCell(3).
-                setCellValue(inputInfo.getLastName() +" "+ StringUtility.transformNameToInitials(inputInfo.getFirstName()));//D11
+                setCellValue(inputInfo.getLastName() + " " + StringUtility.transformNameToInitials(inputInfo.getFirstName()));//D11
         ws.getRow(45).getCell(6).
-                setCellValue(inputInfo.getLastName() + " "+  StringUtility.transformNameToInitials(inputInfo.getFirstName()));//G46
+                setCellValue(inputInfo.getLastName() + " " + StringUtility.transformNameToInitials(inputInfo.getFirstName()));//G46
 
 
         ws.getRow(27).getCell(3).
@@ -49,7 +48,7 @@ public class FirstPagePreparer {
                 setCellValue(inputInfo.getContractTo());//E28
 
         ws.getRow(31).getCell(1).
-                setCellValue(StringUtility.getCurrentEducationalYear());//B32
+                setCellValue(StringUtility.getCurrentEducationalYearDiapazone());//B32
         ws.getRow(31).getCell(2).
                 setCellValue(inputInfo.getJobTitle());//C32
         ws.getRow(31).getCell(3).
@@ -60,5 +59,12 @@ public class FirstPagePreparer {
                 setCellValue(inputInfo.getWorkingPart());//F32
 
         return workbook;
+    }
+
+    private void prepareStub(XSSFWorkbook workbook) {
+        workbook.getSheetAt(1).getRow(4).getCell(0).setCellValue("1 Розподіл навчальної роботи в годинах на" + StringUtility.getCurrentEducationalYearDiapazone() + "навчальний рік");
+
+        workbook.getSheetAt(1).getRow(136).getCell(44).setCellValue(  StringUtility.getCurrentEducationalYearTo() );
+        workbook.getSheetAt(2).getRow(135).getCell(44).setCellValue(  StringUtility.getCurrentEducationalYearTo() );
     }
 }

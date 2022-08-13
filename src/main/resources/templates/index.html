@@ -1,63 +1,101 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+   <!-- <link rel="stylesheet" href="../static/css/style.css">-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
 
-<body>
-<a href="/getDemoInputFile">DEMO INPUT FILE</a>
-<h2>Reporting Creator NMU SAU Minieiev Alexx</h2>
+<body>'
+    <a class="demo" href="/getDemoInputFile">DEMO INPUT FILE</a>
 
-<form action="/inject" method="post" enctype="multipart/form-data">
-    <label for="firstName">Ім.я Побатькові:</label><br>
-    <input type="text" id="firstName" name="firstName" value="John Smith"><br>
+    <div class="container">
+        <form class="form" action="/inject" method="post" enctype="multipart/form-data">
+            <div class="top">
+                <h2 class="title">Reporting Creator NMU SAU Minieiev Alexx</h2>
+               <!-- <img class="logo" src="../static/img/logo.png" />-->
+                <img class="logo" th:src="@{/img/logo.png}"/>
+            </div>
+            
+            <div class="firstName">
+                <label for="firstName">Ім'я Побатькові:</label><br>
+                <input type="text" id="firstName" name="firstName" value="John Smith">
+                <i class="uil uil-users-alt"></i>
+            </div>
+        
+            <div class="lastName">
+                <label for="lastName">Прізвище:</label><br>
+                <input type="text" id="lastName" name="lastName" value="Mcdonald">
+                <i class="uil uil-user-exclamation"></i>
+            </div>
 
-    <label for="lastName">Прізвище:</label><br>
-    <input type="text" id="lastName" name="lastName" value="Mcdonald"><br><br>
+            <div class="departmentName">
+                <label for="departmentName">Department name:</label><br>
+                <select id="departmentName" name="departmentName">
+                    <option value="САіУ">САіУ</option>
+                    <option value="ПЗКС">ПЗКС</option>
+                    <option value="БІТ">БІТ</option>
+                </select>
+                <i class="uil uil-university"></i>
+            </div>
+                
+            <div class="facultyName">
+                <label for="facultyName">Faculty:</label><br>
+                <select id="facultyName" name="facultyName">
+            
+                        <option th:each="element : ${faculties}" th:value="${element.name}" th:text="${element.value}"></option>
+            
+                </select>
+                <i class="uil uil-briefcase"></i>
+            </div>
+            
+            <div class="contractFrom">
+                <label for="contractFrom">Контракт з:</label><br>
+                <input type="text" id="contractFrom" name="contractFrom" value="1.01.2021">
+                <i class="uil uil-top-arrow-to-top"></i>
+            </div>
+            
+            <div class="contractTo">
+                <label for="contractTo">Контракт до:</label><br>
+                <input type="text" id="contractTo" name="contractTo" value="1.01.2034">
+                <i class="uil uil-arrow-to-bottom"></i>
+            </div>
+            
+            <div class="workingPart">
+                <label for="workingPart">Ставка розмір:</label><br>
+                <input type="text" id="workingPart" name="workingPart" value="1.1">
+                <i class="uil uil-bill"></i>
+            </div>
 
-
-    <label for="departmentName">department name:</label><br>
-    <select id="departmentName" name="departmentName">
-        <option value="САіУ">САіУ</option>
-        <option value="ПЗКС">ПЗКС</option>
-        <option value="БІТ">БІТ</option>
-    </select>
-    <br><br>
-    <label for="facultyName">faculty:</label><br>
-    <select id="facultyName" name="facultyName">
-
-            <option th:each="element : ${faculties}" th:value="${element.name}" th:text="${element.value}"></option>
-
-    </select>
-    <br><br>
-
-
-    <label for="contractFrom">контракт з:</label><br>
-    <input type="text" id="contractFrom" name="contractFrom" value="1.01.2021"><br>
-
-    <label for="contractTo">контракт до:</label><br>
-    <input type="text" id="contractTo" name="contractTo" value="1.01.2034"><br><br>
-
-    <label for="workingPart">ставка розмір:</label><br>
-    <input type="text" id="workingPart" name="workingPart" value="1.1"><br>
-
-    <label for="rank">Вчене звання:</label><br>
-    <input type="text" id="rank" name="rank" value="професор"><br>
-
-    <label for="scientificLevel">Науковий ступінь:</label><br>
-    <input type="text" id="scientificLevel" name="scientificLevel" value="д.т.н"><br><br>
-
-    <label for="jobTitle">посада:</label><br>
-    <input type="text" id="jobTitle" name="jobTitle" value="професор"><br>
-
-
-    <label for="file">FILE:</label><br>
-    <input type="file" id="file" name="file"><br><br>
-    <input type="submit" value="Submit">
-
-
-</form>
-
-<
-<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
-
+            <div class="rank">
+                <label for="rank">Вчене звання:</label><br>
+                <input type="text" id="rank" name="rank" value="професор">
+                <i class="uil uil-graduation-cap"></i>
+            </div>
+    
+            <div class="scientificLevel">
+                <label for="scientificLevel">Науковий ступінь:</label><br>
+                <input type="text" id="scientificLevel" name="scientificLevel" value="д.т.н">
+                <i class="uil uil-award"></i>
+            </div>
+            
+            <div class="jobTitle">
+                <label for="jobTitle">Посада:</label><br>
+                <input type="text" id="jobTitle" name="jobTitle" value="професор"><br>
+                <i class="uil uil-game-structure"></i>
+            </div>
+            
+            <div class="file">
+                <label for="file">FILE:</label><br>
+                <input type="file" id="file" name="file">
+                <i class="uil uil-file-import"></i>
+            </div>
+            <input class="submit" type="submit" value="Submit" />
+        </form>
+    </div>
+    
+    <
+    <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.ntu.mineev.transformer.services.utilities;
 import com.ntu.mineev.transformer.DTO.InputData;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class StringUtility {
 
@@ -13,10 +12,16 @@ public class StringUtility {
         return firstLetter + secondLetter;
     }
 
-    public static String getCurrentEducationalYear() {
+    public static String getCurrentEducationalYearDiapazone() {
         LocalDateTime localDateTime = LocalDateTime.now();
 
         return localDateTime.getYear() + "-" + (localDateTime.getYear() - 1);
+    }
+    public static String getCurrentEducationalYearTo() {
+        return getCurrentEducationalYearDiapazone().split("-")[0];
+    }
+    public static String getCurrentEducationalYearFrom() {
+        return getCurrentEducationalYearDiapazone().split("-")[1];
     }
     public static  InputData getRandomInputData(){
         InputData inputData= new InputData();
